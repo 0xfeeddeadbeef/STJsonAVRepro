@@ -5,16 +5,14 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<Platforms>x64</Platforms>
 		<Configurations>Release</Configurations>
-		<LangVersion>12</LangVersion>
+		<LangVersion>latest</LangVersion>
 		<ImplicitUsings>disable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="BenchmarkDotNet" Version="0.14.*" />
-		<PackageReference Include="BenchmarkDotNet.Diagnostics.Windows" Version="0.14.*" />
 		<PackageReference Include="System.Text.Json" Version="8.0.*" />
-		<PackageReference Include="xunit" Version="2.9.*" />
 	</ItemGroup>
 
 </Project>
