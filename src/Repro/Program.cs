@@ -1,15 +1,28 @@
 ﻿// MIT License. See LICENSE file.
 
-using BenchmarkDotNet.Configs;
-using BenchmarkDotNet.Environments;
-using BenchmarkDotNet.Jobs;
-using BenchmarkDotNet.Running;
+using System;
+using System.Text.Json;
 using STJsonAVRepro;
 
-var config = DefaultConfig.Instance
-    .AddJob(Job.ShortRun
-        .WithRuntime(CoreRuntime.Core80)
-        .WithEnvironmentVariables(new EnvironmentVariable("DOTNET_TieredPGO", "0"))
-        .WithId(".NET 8.0"));
+Console.WriteLine("Begin");
 
-_ = BenchmarkRunner.Run<SerializerBenchmarks>(config, args);
+var optReflection = new JsonSerializerOptions(JsonSerializerDefaults.Web)
+{
+    DefaultBufferSize = 81920,
+    WriteIndented = false,
+};
+
+// Uncomment this line to switch to source-generated serializer:
+// optReflection.TypeInfoResolverChain.Insert(0, SimpleTestJsonContext.Default);
+
+var obj = new SimpleTestClass();
+obj.Initialize();
+
+var counter = 0ul;
+for (var i = 0ul; i < 10_000_000ul; i++)
+{
+    counter += (ulong)JsonSerializer.Serialize(obj, optReflection).Length;
+}
+
+Console.WriteLine("Counter {0}", counter);
+Console.WriteLine("End");
