@@ -1,4 +1,6 @@
-﻿using BenchmarkDotNet.Configs;
+﻿// MIT License. See LICENSE file.
+
+using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Environments;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Running;

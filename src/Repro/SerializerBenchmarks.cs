@@ -1,4 +1,6 @@
-﻿using System.Text.Json;
+﻿// MIT License. See LICENSE file.
+
+using System.Text.Json;
 using BenchmarkDotNet.Attributes;
 
 namespace STJsonAVRepro;
